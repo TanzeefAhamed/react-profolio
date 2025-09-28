@@ -1,3 +1,6 @@
+//This is my about me that contains my legal name, a profile image, a short paragraph about myself, and a link to my resume.
+//i used a button for the resume link to make it more visually appealing.
+
 export default function About() {
   return (
     <div>

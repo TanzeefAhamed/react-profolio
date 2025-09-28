@@ -6,12 +6,12 @@ export default function Projects() {
 
       {/* Project 1 */}
       <div>
-        <img src="/project1.png" alt="Project 1" width="250" />
-        <h2>Weather App</h2>
+        <img src="/project1.png" alt="Project 1" width="500" />
+        <h2>Bug Squasher Game</h2>
         <p>
-          <b>My Role:</b> I built this project as a personal practice app.  
+          <b>My Role:</b> I built this interactive game using JavaScript, HTML, and CSS. 
           <br />
-          <b>Outcome:</b> It shows real-time weather data for any city using an online API.
+          <b>Outcome:</b> It was a fun game to make and play that improved my coding skills.
         </p>
       </div>
 
@@ -19,12 +19,12 @@ export default function Projects() {
 
       {/* Project 2 */}
       <div>
-        <img src="/project2.png" alt="Project 2" width="250" />
-        <h2>Portfolio Website</h2>
+        <img src="/project2.png" alt="Project 2" width="500" />
+        <h2>Payment Form</h2>
         <p>
-          <b>My Role:</b> I created this React-based portfolio to show my education and skills.  
+          <b>My Role:</b> I made a payment form using HTML, JavaScript, and CSS.
           <br />
-          <b>Outcome:</b> It helped me learn React routing, components, and deploying to the web.
+          <b>Outcome:</b> It collects user payment info and helped me learn about form validation.
         </p>
       </div>
 
@@ -32,12 +32,12 @@ export default function Projects() {
 
       {/* Project 3 */}
       <div>
-        <img src="/project3.png" alt="Project 3" width="250" />
-        <h2>Calculator App</h2>
+        <img src="/project3.png" alt="Project 3" width="500" />
+        <h2>Java Programmig Quiz Gui</h2>
         <p>
-          <b>My Role:</b> I designed a simple calculator using HTML, CSS, and JavaScript.  
+          <b>My Role:</b> I created a quiz application using Java Swing AND JOptionPane. 
           <br />
-          <b>Outcome:</b> It performs basic arithmetic and helped me practice logical problem-solving.
+          <b>Outcome:</b> It tests users' Java knowledge and improved my Java skills.
         </p>
       </div>
     </div>
