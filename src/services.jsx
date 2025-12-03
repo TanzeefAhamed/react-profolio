@@ -1,6 +1,6 @@
 import React from "react";
 
-// This is our Services page
+//This is our Services page that contains three services I can provide. Each service has a title and a short description.
 function Services() {
   return (
     <div>

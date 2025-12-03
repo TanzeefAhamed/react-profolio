@@ -1,45 +1,57 @@
-export default function Projects() {
+import React, { useState, useEffect } from 'react';
+import auth from "./auth/auth-helper"; // Assuming you have this
+
+export default function Project() {
+  const [projects, setProjects] = useState([]);
+  const [newProject, setNewProject] = useState({ title: '', description: '' });
+
+  useEffect(() => {
+    // Fetch projects
+    fetch('http://localhost:3000/api/projects')
+      .then(response => response.json())
+      .then(data => setProjects(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  const handleChange = name => event => {
+    setNewProject({ ...newProject, [name]: event.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const jwt = auth.isAuthenticated(); // This checks for the user token
+    
+    // Only fetch if logged in
+    fetch('http://localhost:3000/api/projects', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + (jwt ? jwt.token : '') // Sends the token
+      },
+      body: JSON.stringify(newProject)
+    })
+    .then(response => response.json())
+    .then(data => {
+      setProjects([...projects, data]);
+      setNewProject({ title: '', description: '' });
+    })
+  };
+
   return (
     <div>
-      <h1>My Projects</h1>
-      <p>Here are a few projects I have worked on. Each one helped me practice and improve my skills.</p>
-
-      {/* Project 1 */}
-      <div>
-        <img src="/project1.png" alt="Project 1" width="500" />
-        <h2>Bug Squasher Game</h2>
-        <p>
-          <b>My Role:</b> I built this interactive game using JavaScript, HTML, and CSS. 
-          <br />
-          <b>Outcome:</b> It was a fun game to make and play that improved my coding skills.
-        </p>
-      </div>
-
-      <hr />
-
-      {/* Project 2 */}
-      <div>
-        <img src="/project2.png" alt="Project 2" width="500" />
-        <h2>Payment Form</h2>
-        <p>
-          <b>My Role:</b> I made a payment form using HTML, JavaScript, and CSS.
-          <br />
-          <b>Outcome:</b> It collects user payment info and helped me learn about form validation.
-        </p>
-      </div>
-
-      <hr />
-
-      {/* Project 3 */}
-      <div>
-        <img src="/project3.png" alt="Project 3" width="500" />
-        <h2>Java Programmig Quiz Gui</h2>
-        <p>
-          <b>My Role:</b> I created a quiz application using Java Swing AND JOptionPane. 
-          <br />
-          <b>Outcome:</b> It tests users' Java knowledge and improved my Java skills.
-        </p>
-      </div>
+      <h2>Project Page</h2>
+      {auth.isAuthenticated() && (
+        <div>
+           {/* This form is hidden unless logged in */}
+           <input type="text" onChange={handleChange('title')} value={newProject.title} placeholder="Title"/>
+           <textarea onChange={handleChange('description')} value={newProject.description} placeholder="Desc"/>
+           <button onClick={handleSubmit}>Add</button>
+        </div>
+      )}
+      
+      {/* List of projects always shows */}
+      {projects.map((p, i) => <div key={i}>{p.title}</div>)}
     </div>
   );
 }
